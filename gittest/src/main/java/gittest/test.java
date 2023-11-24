@@ -9,6 +9,7 @@ public class test {
 		System.out.println("서경은 입력함");
 		System.out.println("홍수원 입력함");
 		System.out.println("곽수진 입력함");
+		System.out.println("충돌테스트_곽수진");
 	}
 
 }
