@@ -11,6 +11,7 @@ public class test {
 		System.out.println("곽수진 입력함");
 		System.out.println("충돌테스트_곽수진");
 		System.out.println("오승지 입력함");
+		System.out.println("오늘 발표 힘들었다");
 		for(int i=0;i<10;i++) {
 			System.out.println();
 		}
