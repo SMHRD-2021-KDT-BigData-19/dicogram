@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration SYSTEM "mybatis-3-config.dtd" >
+<configuration>
+<!-- DB연결 정보가 담겨있는 파일을 연결 
+	db.properties 파일에서는 띄어쓰기x, 주석 정리x
+	driver,url,username,password
+-->
+	<properties resource="com/dicogram/database/db.properties" />
+	
+  <environments default="development">
+    <environment id="development">
+      <transactionManager type="JDBC"/>
+      <dataSource type="POOLED">
+        <property name="driver" value="${driver}"/>
+        <property name="url" value="${url}"/>
+        <property name="username" value="${username}"/>
+        <property name="password" value="${password}"/>
+      </dataSource>
+    </environment>
+  </environments>
+  <mappers>
+  <!-- sql문을 관리할 mapper정리되어있는 곳  -->
+  
+    <mapper resource="com/dicogram/database/MemberMapper.xml"/>
+  </mappers>
+  </configuration>

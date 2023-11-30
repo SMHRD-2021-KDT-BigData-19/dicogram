@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "mybatis-3-mapper.dtd" >
+<mapper>
+	<insert id="insertMember" parameterType="com.smhrd.domain.Member">
+		insert into member values (#{email},#{pw},#{tel},#{address})
+	</insert>
+	<select id="selectMember" parameterType="com.smhrd.domain.Member"
+		resultType="com.smhrd.domain.Member">
+		select * from member where email = #{email} and pw = #{pw}
+	</select>
+	<update id="updateMember" parameterType="com.smhrd.domain.Member">
+ 		update member set pw=#{pw} ,tel=#{tel},address=#{address} where email=#{email}
+ 	</update>
+ 	<select id="selectAll" resultType="com.smhrd.domain.Member">
+ 		select * from member
+ 	</select>
+ 	<delete id="deleteMember" parameterType="String">
+ 		delete from member where email=#{email}
+ 	</delete>
+</mapper>
