@@ -41,6 +41,8 @@ public class test extends HttpServlet {
 				session.setAttribute("test1", test1);
 				response.sendRedirect("test.jsp");
 				System.out.println('asd');
+				System.out.println('asd2');
+				
 			}
 			else {
 				response.sendRedirect("test.jsp");
