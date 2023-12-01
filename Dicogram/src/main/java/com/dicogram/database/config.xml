@@ -20,7 +20,6 @@
   </environments>
   <mappers>
   <!-- sql문을 관리할 mapper정리되어있는 곳  -->
-  
     <mapper resource="com/dicogram/database/MemberMapper.xml"/>
   </mappers>
   </configuration>

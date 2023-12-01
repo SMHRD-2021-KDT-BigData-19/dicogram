@@ -11,6 +11,9 @@ public class dUsers {
 	private String endDate;
 	
 	
+	public dUsers() {
+		super();
+	}
 	public dUsers(String id, String pw, String nick, String email, String proPath) {
 		super();
 		this.id = id;
