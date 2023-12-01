@@ -40,6 +40,7 @@ public class test extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("test1", test1);
 				response.sendRedirect("test.jsp");
+				System.out.println('asd');
 			}
 			else {
 				response.sendRedirect("test.jsp");
