@@ -1,0 +1,148 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #DAEFFF;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+@font-face {
+    font-family: 'TheJamsil5Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil5Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+body {
+    font-family: 'TheJamsil5Bold', sans-serif;
+}
+button {
+    font-family: 'TheJamsil5Bold', sans-serif;
+    /* 버튼에 대한 추가 스타일을 여기에 추가하세요 */
+}
+.signup-container p {
+    font-size: 12px; /* 원하는 대로 글꼴 크기 조절 */
+    color: #666; /* 회색 또는 원하는 다른 색상으로 변경 */
+    margin-top: 30px; /* 필요한 만큼 여백 조절 */
+    opacity: 0.4;
+}
+li{
+    list-style:none;
+    }
+.signup-container {
+    background-color: #E3F3FE;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    align-items: center; /* 센터 정렬 추가 */
+    width: 800px; /* 넓이 조절 */
+}
+
+h2 {
+    margin-top: 0;
+}
+
+input {
+    width: calc(100% - 20px); /* 여백 고려한 넓이 조절 */
+    padding: 10px;
+    
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    
+}
+
+
+.input-label label {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-30%);
+    color: rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+    transition: transform 0.3s ease-in-out, font-size 0.3s ease-in-out, color 0.3s ease-in-out;
+    
+}
+
+.input-label {
+    width: 108%;
+    position: relative;
+}
+
+.input-label2 {
+    width: 102.5%;
+}
+
+.input-label label {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-30%);
+    color: rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+    transition: transform 0.3s ease-in-out, font-size 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.btn-container {
+    display: flex;
+    align-items: flex-start; /* 세로 정렬을 위해 수정 */
+    
+}
+
+button {
+    padding: 8px 13px; /* 크기 조절 */
+    background-color: #4195f0;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background-color: #2273b5;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+.check-btn {
+    background-color: #5eace7;
+    padding: 12px 5px;
+    font-size: 11px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.check-btn:hover {
+    background-color: #3f95db;
+}
+
+img {
+    max-width: 100%; /* 이미지가 컨테이너를 벗어나지 않도록 최대 너비 설정 */
+    height: auto; /* 비율 유지를 위해 높이 자동 조정 */
+    margin-right: 50px; /* 이미지와 내용 사이 여백 조절 */
+    
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+   
+}
+
+td {
+    padding: 10px;
+    width: 75%; /* 각 열의 너비 조절 */
+}
+
+td:last-child {
+    text-align: center;
+}
+#message {
+	color : #ff0000;
+	
+}

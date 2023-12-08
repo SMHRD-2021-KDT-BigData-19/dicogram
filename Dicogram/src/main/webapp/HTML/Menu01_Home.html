@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/Menu01_Home.css">
+    <title>Styled Feed with Comments</title>
+</head>
+<body>
+    <div id="feed-container">
+        <div class="post" id="post1">
+            <div class="post-header">
+                <img src="../image/dragonmin.png" alt="User1" width="40px" height="40px">
+                <span class="username">user1</span>
+            </div>
+            <div class="post-content">
+                <img src="../image/sun_set.jpg" alt="Beautiful sunset">
+                <div class="caption">Beautiful sunset!</div>
+            </div>
+            <div class="post-actions">
+                <button onclick="toggleComments('post1')">댓글</button>
+                <div class="date" data-timestamp="1638382000000"></div>
+            </div>
+            <div class="comments" id="comments1">
+                <!-- 댓글이 나타날 곳 -->
+                <!-- 이곳에 동적으로 댓글이 추가됩니다. -->
+            </div>
+        </div>
+
+        <div class="post" id="post2">
+            <div class="post-header">
+                <img src="profile.jpg" alt="User2" width="40" height="40">
+                <span class="username">user2</span>
+            </div>
+            <div class="post-content">
+                <img src="image2.jpg" alt="Exploring new places">
+                <div class="caption">Exploring new places.</div>
+            </div>
+            <div class="post-actions">
+                <button onclick="toggleComments('post2')">댓글</button>
+                <div class="date" data-timestamp="1638295600000"></div>
+            </div>
+            <div class="comments" id="comments2">
+                <!-- 댓글이 나타날 곳 -->
+                <!-- 이곳에 동적으로 댓글이 추가됩니다. -->
+            </div>
+        </div>
+        <!-- Add more posts as needed -->
+    </div>
+
+    <script src="/JS/Menu01_Home.js"></script>
+</body>
+</html>

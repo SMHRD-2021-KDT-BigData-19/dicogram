@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인스타그램 피드</title>
+    <link rel="stylesheet" href="../CSS/Menu01_Home_newpost.css">
+</head>
+<body>
+    <div id="feed-container">
+        <div id="feed-container2">
+            <div id="post-form">
+                <table  align="center">
+                    <tr>
+                        <td> <label for="post-title">게시물 제목</label></td>
+                        <td> <input type="text" id="post-title" placeholder="제목을 입력하세요."></td>
+                    </tr>
+                </table>
+            </div>    
+    
+        </div>
+        <div id="post-form">
+            <textarea id="post-input" placeholder="게시물을 작성하세요"></textarea>
+            <input type="file" id="file-input" accept="image/*">
+            <table id="cancel_post">
+                <tr>
+                    <td><button id="cancel-button">취소</button></td>
+                    <td><button id="post-button">게시</button></td>
+                </tr>
+            </table>
+        </div>
+        <div id="post-list"></div>
+    </div>
+   
+    <script src="../JS/Menu01_Home_newpost.js"></script>
+</body>
+</html>

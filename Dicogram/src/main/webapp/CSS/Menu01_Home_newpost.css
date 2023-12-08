@@ -1,0 +1,116 @@
+body {
+    background-color: #DAEFFF;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'NanumSquareNeo-Variable', sans-serif;
+    
+}
+@font-face {
+    font-family: 'NanumSquareNeo-Variable';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+#feed-container {
+    background-color: #E3F3FE;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    max-width: 600px;
+    margin: 50px auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+
+}
+
+#post-form {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 20px;
+    width: 100%;
+}
+
+#post-title-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#post-title {
+    margin-right: 10px;
+    width: 80%;
+}
+
+#post-input {
+    width: calc(100% - 10px);
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    height: 300px;
+}
+
+#post-button, 
+#cancel-button {
+    padding: 8px 15px;
+    background-color: #e6e6fa;
+    color:#5f2f4f;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    align-self: flex-end;
+    margin-right: 20px;
+    display: inline-block; /* 취소 버튼과 게시 버튼을 인라인 블록으로 표시하여 같은 줄에 나란히 배치 */
+    margin-right: 10px; 
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease; 
+}
+#cancle,#sub {
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3); /* 호버 시 그림자 효과 증가 */
+    background-color: rgb(132, 157, 222);
+}
+
+#post-list {
+    padding: 10px;
+}
+
+.post {
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+.post-content {
+    margin-bottom: 10px;
+}
+
+.post-time {
+    color: #888;
+    font-size: 12px;
+}
+#file-input {
+    margin-left: 210px;
+}
+#cancel_post {
+    margin-left: 130px;
+    margin-top: 20px;
+   
+}
+input {
+	border-radius: 10px;
+}

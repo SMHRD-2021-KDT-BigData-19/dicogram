@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입 페이지</title>
+    <link rel="stylesheet" href="./CSS/RegisterForm.css">
+    <style>
+        /* 스타일을 위한 추가 코드 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border: 2px solid #333;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <li>
+            <img src="./image/dicogram_logo.png" alt="이미지">
+            <p>Copyright © 2023 Soft by Creative Tim.</p>
+        </li>
+        
+        <form onsubmit="return validateForm()">
+            <h2>회원가입</h2>
+            <table>
+                <tr>
+                    <td colspan="2">
+                        <div class="input-label2">
+                            <input type="text" id="name" name="name" required placeholder="이름">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="input-label">
+                            <input type="text" id="nickname" name="nickname" required placeholder="닉네임">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="btn-container">
+                            <button type="button" class="check-btn">중복확인</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div class="input-label2">
+                            <input type="email" id="email" name="email" required placeholder="이메일">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="input-label">
+                            <input type="text" id="username" name="username" required placeholder="아이디">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="btn-container">
+                            <button type="button" class="check-btn">중복확인</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div class="input-label2">
+                            <input type="password" id="password" name="password" required placeholder="비밀번호">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div class="input-label2">
+                            <input type="password" id="confirmpassword" name="confirmpassword" required placeholder="비밀번호 확인" required oninput="checkpassword()">
+                            <p id="message"></p>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <button type="submit">가입하기</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div id="myModal" class="modal">
+        <span>비밀번호가 일치하지 않습니다. 다시 확인해주세요.</span>
+    </div>
+
+    <script>
+        function validateForm() {
+            const passwordInput = document.getElementById("password");
+            const confirmPasswordInput = document.getElementById("confirmpassword");
+            const passwordError = document.getElementById("passwordError");
+
+            const password = passwordInput.value;
+            const confirmPassword = confirmPasswordInput.value;
+
+            if (password !== confirmPassword) {
+                
+                openModal();
+                return false; // 폼 제출 중단
+            } else {
+                passwordError.textContent = "";
+                return true; // 폼 제출 진행
+            }
+        }
+
+        function openModal() {
+            const modal = document.getElementById("myModal");
+            modal.style.display = "block";
+
+            // 일정 시간이 지난 후에 모달을 닫습니다. (예: 3초 후)
+            setTimeout(function () {
+                modal.style.display = "none";
+            }, 3000);
+        }
+        function checkpassword() {
+            var password = document.getElementById("password").value;
+            var confirmpassword = document.getElementById("confirmpassword").value;
+
+            if (password !== confirmpassword) {
+              document.getElementById("message").innerHTML = "비밀번호가 일치하지 않습니다.";
+            } else {
+              document.getElementById("message").innerHTML = "";
+            }
+          }
+    </script>
+</body>
+</html>

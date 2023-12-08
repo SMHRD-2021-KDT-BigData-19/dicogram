@@ -1,0 +1,105 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #DAEFFF;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+@font-face {
+    font-family: 'TheJamsil5Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil5Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+a,form {
+    font-family: 'TheJamsil5Bold', sans-serif;
+}
+button {
+    font-family: 'TheJamsil5Bold', sans-serif;
+    /* 버튼에 대한 추가 스타일을 여기에 추가하세요 */
+}
+p {
+    font-size: 12px; /* 원하는 대로 글꼴 크기 조절 */
+    color: #666; /* 회색 또는 원하는 다른 색상으로 변경 */
+    margin-top: 30px; /* 필요한 만큼 여백 조절 */
+    opacity: 0.4;
+}
+.login-container {
+    background-color: #E3F3FE;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 25%;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+.logo {
+    width: 150px; /* 로고의 크기를 조절할 수 있습니다. */
+    margin-bottom: 40px;
+    margin-top: 40px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.input-label {
+    position: relative;
+}
+
+.input-label label {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-30%);
+    color: rgba(0, 0, 0, 0.5);
+    
+}
+
+button, .register-link {
+    background-color: #2A8BF2;
+    color: #fff;
+    padding: 8px 25px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px; /* 로그인 버튼과 회원가입 버튼 사이의 간격을 조절합니다. */
+    font-size: 13px;
+}
+
+
+.register-link  {
+    margin-top: 10px;
+    color: #fff;
+    text-decoration: none;
+    display: inline-block;
+    margin-left: 10px; 
+    font-size: 14px;
+    
+}
+.forgot-password-link {
+    margin-top: 10px;
+    color: #000000;
+    text-decoration:none;
+    display: inline-block;
+    margin-left:10px;
+    font-size: 11px;
+    
+    
+}
