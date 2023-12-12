@@ -14,14 +14,9 @@ public class userdataToDBCon extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println("userdataToDBCon에 들어왔습니다.");
-		
 		// 방id 추출
 		long roomid = Long.parseLong(request.getParameter("roomid"));
 		String userid = request.getParameter("userid");
-		
-		System.out.println("방id: " + roomid);
-		System.out.println("참여자id: " + userid);
 
 		UsersDAO dao = new UsersDAO();
 		roomuserDTO userdataToDBMem = new roomuserDTO(roomid,userid);

@@ -30,22 +30,12 @@ public class UsersloginCon extends HttpServlet {
 	
 		UsersDAO dao = new UsersDAO();
 		Users login = dao.LoginUser(loginUser);
-		
-//		SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSession();
-//		SqlSession sqlSession = sqlSessionFactory.openSession();
-//		String mypath = sqlSession.selectOne("onlyP", loginUser.getUserid());
-		
+	
 		if (login != null) { // 로그인 성공시 session에 저장
 			HttpSession session = request.getSession();
 			// session에 정보를 저장
 			session.setAttribute("loginUser", login);
 			System.out.println("로그인 성공");
-			
-			
-//			loginUser.setPropath(mypath); 
-//			session.setAttribute("loginUser", loginUser);
-
-
             
 			response.sendRedirect("Main.jsp"); // 메인페이지로 이동
 			

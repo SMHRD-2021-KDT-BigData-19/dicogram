@@ -17,7 +17,7 @@ public class createChatRoomCon extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println("createChatRoomCon에 들어옴");
+		// 새로운 채팅방을 만들기 위한 서블릿 코드
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 		
@@ -29,11 +29,6 @@ public class createChatRoomCon extends HttpServlet {
 		Users loginUser = (Users)session.getAttribute("loginUser");
 		String userid = loginUser.getUserid();
 		
-		System.out.println("방이름: " + roomname);
-		System.out.println("비번: " + pw);
-		System.out.println("공개여부: " + setting);
-		System.out.println("만든 사람: " + userid);
-
 		// rooms DB에 채팅방 새로 저장
 		roomsDTO createChatRoomMem = new roomsDTO(roomname, userid, setting, pw);
 		
