@@ -1,2 +1,5 @@
 desc dusers;
-select * from dusers;
+select * from posts;
+
+delete from posts;
+commit;

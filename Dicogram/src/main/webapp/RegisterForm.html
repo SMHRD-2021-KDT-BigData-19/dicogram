@@ -27,26 +27,15 @@
             <img src="./image/dicogram_logo.png" alt="이미지">
             <p>Copyright © 2023 Soft by Creative Tim.</p>
         </li>
-        
-        <form onsubmit="return validateForm()">
+
+ 
+        <form action="UsersJoinCon" method="post" onsubmit="return validateForm()">
             <h2>회원가입</h2>
             <table>
                 <tr>
                     <td colspan="2">
                         <div class="input-label2">
                             <input type="text" id="name" name="name" required placeholder="이름">
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="input-label">
-                            <input type="text" id="nickname" name="nickname" required placeholder="닉네임">
-                        </div>
-                    </td>
-                    <td>
-                        <div class="btn-container">
-                            <button type="button" class="check-btn">중복확인</button>
                         </div>
                     </td>
                 </tr>
@@ -60,7 +49,7 @@
                 <tr>
                     <td>
                         <div class="input-label">
-                            <input type="text" id="username" name="username" required placeholder="아이디">
+                            <input type="text" id="username" name="userid" required placeholder="아이디">
                         </div>
                     </td>
                     <td>
@@ -72,21 +61,35 @@
                 <tr>
                     <td colspan="2">
                         <div class="input-label2">
-                            <input type="password" id="password" name="password" required placeholder="비밀번호">
+                            <input type="password" id="password" name="pw" required placeholder="비밀번호">
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2">
                         <div class="input-label2">
-                            <input type="password" id="confirmpassword" name="confirmpassword" required placeholder="비밀번호 확인" required oninput="checkpassword()">
-                            <p id="message"></p>
+                            <input type="password" id="confirmpassword" name="confirmpassword" required placeholder="비밀번호 확인">
+                        </div>
+                    </td>
+                   
+                </tr>
+                <tr>
+                    <td>
+                        <div class="input-label">
+                            <input type="text" id="nick" name="nick" required placeholder="닉네임">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="btn-container">
+                            <button type="button" class="check-btn">중복확인</button>
                         </div>
                     </td>
                 </tr>
+                
+                
                 <tr>
-                    <td colspan="2">
-                        <button type="submit">가입하기</button>
+                    <td colspan="2" >
+                        <button type="submit" value="JoinUs" class="button fit">가입하기</button>
                     </td>
                 </tr>
             </table>

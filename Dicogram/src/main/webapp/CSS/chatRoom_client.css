@@ -1,0 +1,319 @@
+/* @import url('https://fonts.googleapis.com/css?family=Lato:400,700'); */
+
+/* Variables */
+:root {
+  --font: 'Lato', sans-serif;
+  --primary: #79C7C5;
+  --secondary: #A1E2D9;
+  --white: #F9FBFF;
+  --dark: #777777;
+}
+
+/* Global Styles */
+html {
+  display: grid;
+  min-height: 100%;
+}
+
+body {
+  display: grid;
+  background: #A1E2D9;
+  font-family: var(--font);
+}
+.container {
+    display: flex;
+    flex-direction: row;
+	position: relative;
+}
+
+.chatbox,
+.enteredUsersList {
+    flex: 1;
+}
+
+/* Chatbox Styles */
+.chatbox {
+  position: absolute;
+  left: 30%;
+  height: 100%;
+  width: 55%;
+  border-radius: 10px;
+  box-shadow: 5px 5px 15px rgba(var(--dark), 0.5);
+}
+
+.top-bar {
+  width: 100%;
+  height: 60px;
+  background: var(--white);
+  border-radius: 10px 10px 0 0;
+}
+
+.avatar {
+  width: 35px;
+  height: 35px;
+  background: linear-gradient(to bottom left, var(--primary) 20%, var(--secondary) 100%);
+  border-radius: 50%;
+  position: absolute;
+  top: 13px;
+  left: 15px;
+}
+
+.avatar p {
+  color: var(--white);
+  margin: 7px 12px;
+}
+
+.name {
+  position: absolute;
+  top: 19px;
+  text-transform: uppercase;
+  color: var(--dark);
+  font-size: 1em;
+  letter-spacing: 2px;
+  font-weight: 500;
+  left: 60px;
+}
+
+/*****Middle Section Styles*****/
+.middle {
+  position: absolute;
+  background: var(--white);
+  width: 100%;
+  opacity: 0.85;
+  top: 60px;
+  height: calc(100vh - 130px);
+  /* 스크롤 기능 */
+  overflow: hidden;
+  overflow-y: scroll;
+}
+/* 스크롤 숨기기 */
+.middle::-webkit-scrollbar {
+  display: none;
+}
+
+/* 리스트 점 업애기 + 들여쓰기 없애기 */
+.chatting-list {
+	list-style:none;
+	padding-left:0px;
+    margin-top: 10px;    /* 원하는 위쪽 간격(px)으로 조정 */
+    margin-bottom: 10px; /* 원하는 아래쪽 간격(px)으로 조정 */
+}
+
+.chatting-list li{
+    width: 70%;
+  padding: 0.3rem;
+  display: flex;
+  margin-inline: 10px;
+}
+
+
+/* 프로필 이미지 적용 */
+.profileImage{
+    border-radius: 40%;
+    /* 프로필 이미지 크기에 맞게 적용 */
+    object-fit: cover;
+    width: 50px;
+    height: 50px;
+    /* 그림에서 떨어지기 */
+    margin-right: 0.5rem;
+}
+
+/* 사용자 이름과 메세지 내용 */
+.Text{
+    /* 세로 정렬 */
+    display: flex;
+    flex-direction: column;
+}
+
+/* 사용자 이름 */
+.Text .user{
+    font-size: 12px;
+    margin-top: 0.2rem;
+    margin-bottom: 0.3rem;
+}
+
+.Text .message{
+    font-size: 15px;
+    border-radius: 5px;
+    padding: 8px 12px 8px 12px;
+}
+
+/* 시간 */
+.time{
+    font-size: 10px;
+    margin: 5px 5px 0px 5px;
+    align-self: flex-end;
+    white-space: nowrap;
+}
+
+/* 메세지창 디자인 */
+.message{
+  	color: var(--white);
+    word-break: break-word; /* 단어가 길 경우 자동으로 줄 바꿈 처리 */
+    line-height: 1.5; /* 줄 간격 추가 */
+}
+
+/* 받는 메세지 창 */
+.received .message{
+    background: #a6a6a6;
+    border-radius: 20px;
+}
+
+/* 보내는 메세지 창 */
+.send{
+    flex-direction: row-reverse;
+    float: right;
+}
+.send .message{
+    background: var(--primary);
+    border-radius: 20px;
+} 
+ 
+/* Bottom Bar Styles */
+.bottom-bar {
+  position: absolute;
+  width: 100%;
+  height: 55px;
+  bottom: 0;
+  background: var(--white);
+  border-radius: 0 0 10px 10px;
+}
+
+/* Input Styles */
+input {
+  padding: 7px;
+  width: 80%;
+  left: 2%;
+  position: absolute;
+  border: 0;
+  top: 13px;
+  background: var(--white);
+  color: var(--primary);
+}
+
+input::placeholder {
+  color: var(--secondary);
+}
+
+input:focus {
+  color: var(--dark);
+  outline: 0;
+}
+
+/* Button Styles */
+button {
+  position: absolute;
+  border: 0;
+  font-size: 1em;
+  color: var(--secondary);
+  top: 15px;
+  opacity: 0.8;
+  right: 17px;
+  cursor: pointer;
+  outline: 0;
+}
+
+button:hover {
+  transform: scale(1.1);
+  transition: all .3s ease-in-out;
+  color: var(--primary);
+}
+
+/*****친구목록*****/
+.enteredUsersList{
+	position: absolute;
+	left: 85.5%;
+	height: 100%;
+	width: 14.5%;
+	border-radius: 10px;
+	box-shadow: 5px 5px 15px rgba(var(--dark), 0.5);
+}
+.users_top_bar {
+	position: absolute;
+  width: 100%;
+  height: 60px;
+  background: var(--white);
+  border-radius: 10px 10px 0 0;
+}
+.icon {
+  background: linear-gradient(to bottom left, var(--primary) 20%, var(--secondary) 100%);
+  position: absolute;
+  top: 13px;
+  left: 15px;
+  border-radius: 50%;
+  /* 아이콘 이미지 크기에 맞게 적용 */
+  object-fit: cover;
+  width: 35px;
+  height: 35px;
+}
+.usersList_title {
+  position: absolute;
+  top: 19px;
+  text-transform: uppercase;
+  color: var(--dark);
+  font-size: 1em;
+  letter-spacing: 2px;
+  font-weight: 500;
+  left: 60px;
+}
+.users_Middle {
+  position: absolute;
+  background: var(--white);
+  width: 100%;
+  opacity: 0.85;
+  top: 60px;
+  height: calc(100vh - 77px);
+  /* 스크롤 기능 */
+  overflow: hidden;
+  overflow-y: scroll;
+  border-radius: 0 0 10px 10px;
+}
+/* 스크롤 숨기기 */
+.users_Middle::-webkit-scrollbar {
+  display: none;
+}
+
+.usersImageName{
+    /* 세로 정렬 */
+    display: flex;
+    flex-direction: row;
+}
+/* 프로필 이미지 적용 */
+.usersImageName .usersProfileImage{
+    border-radius: 40%;
+    /* 프로필 이미지 크기에 맞게 적용 */
+    object-fit: cover;
+    width: 35px;
+    height: 35px;
+    /* 그림에서 떨어지기 */
+    margin-right: 0.5rem;
+}
+/* 사용자 이름 */
+.usersImageName .usersName{
+    font-size: 12px;
+    /* 가운데 정렬 */
+    display: flex; /* Flexbox를 사용하여 가운데 정렬을 적용합니다. */
+    justify-content: left; /* 수평 왼쪽 정렬 */
+    align-items: center; /* 수직 가운데 정렬 */
+}
+/* 리스트 점 업애기 + 들여쓰기 없애기 */
+.users-list {
+	list-style:none;
+	padding-left:0px;
+    margin-top: 5px;    /* 원하는 위쪽 간격(px)으로 조정 */
+    margin-bottom: 5px; /* 원하는 아래쪽 간격(px)으로 조정 */
+}
+
+.users-list li{
+  width: 70%;
+  padding: 0.1rem;
+  display: flex;
+  margin-left: 5px;
+}
+
+.backToMenu2btn {
+	position: absolute;
+	width: 30px;
+	height: auto;
+	right: 0px;
+}

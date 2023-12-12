@@ -13,7 +13,7 @@ body {
     font-weight: normal;
     font-style: normal;
 }
-#profileForm,button,#friends-content {
+#profileForm,#friends-content {
     font-family: 'NanumSquareNeo-Variable', sans-serif;
 }
 body {
@@ -73,8 +73,6 @@ body {
     justify-content: center;
    
 }
-
-
 .content-box {
     margin-top: 50px;
     margin-left: 330px;
@@ -83,8 +81,6 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
-    
-   
 }
 
 
@@ -133,15 +129,13 @@ body {
     text-align: center;
 }
 
-
-
 #content {
     margin-top: 50px; /* 헤더의 높이에 맞춰 조절 */
 }
 .content-button {
     position: absolute;
-    top: 70px; /* 원하는 위치로 조절 */
-    right: 375px; /* 원하는 위치로 조절 */
+    top: 10px; /* 원하는 위치로 조절 */
+    left: 1430px; /* 원하는 위치로 조절 */
     padding: 8px 20px;
     background-color:#2A8BF2;
     color: white;
@@ -149,8 +143,6 @@ body {
     border-radius: 5px;
     cursor: pointer;
 }
-
-
 #chat-list-container {
     max-width: 600px;
     margin: 20px auto;

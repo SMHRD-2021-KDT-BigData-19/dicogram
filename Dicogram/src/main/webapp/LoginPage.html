@@ -5,30 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>로그인 페이지</title>
     <link rel="stylesheet" href="./CSS/LoginPage.css">
-
 </head>
 
 <body>
     <div class="login-container">
         <img src="./image/dicogram_logo.png" alt="로고" class="logo">
-        <form>
+        <form action="UsersloginCon" method="post">
             <div class="input-label">
-              
-                <input type="text" id="username" name="username" required placeholder="ID">
+				<input type="text" id="username" name="userid" required placeholder="ID">
             </div>
 
             <div class="input-label">
-                <input type="password" id="password" name="password" required placeholder="PASSWORD">
+                <input type="password" id="password" name="pw" required placeholder="PASSWORD">
             </div>
 
-            <button type="submit" onclick="validateLogin()">로그인</button>
-            <a href="/RegisterForm.html" class="register-link" >회원가입</a>
+            <button type="submit" value="Login" class="button fit">로그인</button>
+            <a href="RegisterForm.html" class="register-link" >회원가입</a>
             <br>
-
-            
-           
         </form>
         
+        <a href="#" class="forgot-password-link">아이디/비밀번호 찾기</a>
         
         <br>
         <p>Copyright © 2023 Soft by Creative Tim.</p>

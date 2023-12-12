@@ -41,22 +41,6 @@ form {
     flex-direction: column;
 }
 
-button,
-input {
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 14px;
-}
-
-button.image-btn {
-    cursor: pointer;
-    background-color: #3498db;
-    color: #fff;
-    border: none;
-}
-
 label {
     font-weight: bold;
     display: inline-block;

@@ -1,4 +1,4 @@
- // 채팅방 목록 데이터
+// 채팅방 목록 데이터
  const chatRooms = [
     { id: 1, name: '방1' },
     { id: 2, name: '방2' },

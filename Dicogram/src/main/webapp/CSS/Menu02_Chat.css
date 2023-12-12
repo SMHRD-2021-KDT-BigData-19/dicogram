@@ -1,179 +1,79 @@
-body {
-    background: linear-gradient(to top, #daefff, #DAEFFF);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/*여기서부터 */
+ul {
+    list-style: none;
     padding: 0;
-    display: flex;
-    position: relative;
-    height: auto;
-
 }
 
-@font-face {
-    font-family: 'NanumSquareNeo-Variable';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
+ul li {
+    margin-bottom: 10px;
 }
 
-#profileForm,
-button,
-#friends-content {
-    font-family: 'NanumSquareNeo-Variable', sans-serif;
-}
-
-body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f2f2f2;
-    text-align: center;
-}
-
-#sidelogo {
-    width: 100px;
-    height: 100px;
-    margin-top: 20px;
-}
-
-#sidebar {
-    width: 200px;
-    height: 100vh;
-    background-color: #fff;
-    color: #474747;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 20px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    position: fixed;
-    z-index: 2000;
-}
-
-#menu {
-    display: flex;
-    flex-direction: column;
-    margin-top: 10px;
-}
-
-#menu a {
-    color: #474747;
+ul li a {
     text-decoration: none;
-    padding: 6px;
-    padding-left: 5px;
-    margin: 5px;
-    text-align: left;
-    border-radius: 5px;
-    transition: background-color 0.3s ease-in-out;
-    font-size: 13px;
-}
-
-#menu a:hover {
-    color: #2A8BF2;
-    text-shadow: #c7dbf0;
-}
-
-#content {
-
-    padding: 20px;
-    align-items: center;
-    justify-content: center;
-
-}
-
-/* .hidden{
-    display: none;
-} */
-
-
-.content-box {
-    margin-top: 100px;
-    margin-left: 200px;
+    color: #333;
+    display: block;
+    padding: 10px;
     background-color: #fff;
-    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease-in-out;
+}
+
+ul li a:hover {
+    background-color: #f0f0f0;
+}
+/* 나의 채팅 */
+.myChatbox {
+    margin-top: 10px;
+    margin-left: 210px;
+    background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-
-
+    /* margin-bottom: 20px; */
+    width: 600px;
+    height: calc(100vh - 20px);
+    background-color: aliceblue;
+}
+.myChatList{
+	max-height: calc(100vh - 120px);
+    /* 스크롤 기능 */
+	overflow: hidden;
+	overflow-y: scroll;
+}
+/* 스크롤 숨기기 */
+.myChatList::-webkit-scrollbar {
+  display: none;
+}
+.chatTitle{
+	text-align: center;
+	color: #333;
+/* 	background-color: aliceblue; */
+	border-radius: 10px;
+}
+.chatTitle h1{
+	margin: 0px;
+	padding: 20px;
 }
 
 
-
-.nohover,
-.onhover {
-    height: 11px;
-    width: 11x;
-    margin-right: 3px;
-}
-
-.onhover {
-    display: none;
-}
-
-#menu a:hover img.onhover {
-    display: inline;
-}
-
-#menu a:not(:hover) img.onhover {
-    display: none;
-}
-
-#menu a:hover img.nohover {
-    display: none;
-}
-
-#menu a:not(:hover) img.nohover {
-    display: inline;
-}
-
-#profile_img {
-    margin-top: 25px;
-    border: 0.5px solid gray;
-    border-radius: 50%;
-    height: 120px;
-    width: 120px;
-    cursor: pointer;
-}
-
-#content {
-    margin-top: 50px;
-    /* 헤더의 높이에 맞춰 조절 */
-}
-
-.content-button {
-    position: absolute;
-    top: 100px;
-    /* 원하는 위치로 조절 */
-    right: 525px;
-    /* 원하는 위치로 조절 */
-    padding: 8px 20px;
-    background-color:#2A8BF2;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-
-h1 {
-    text-align: center;
-    color: #333;
-}
-
-#chatList {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-
-.chatRoom {
-    padding: 15px;
-    border-bottom: 1px solid #ddd;
-    cursor: pointer;
+/* 오픈채팅 */
+.openChatbox {
+    margin-top: 10px;
+    margin-left: 10px;
+	width: 600px;
     background-color: #fff;
-    transition: background-color 0.3s;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    height: calc(100vh - 20px);
+    background-color: aliceblue;
 }
-
-.chatRoom:hover {
-    background-color: #f0f0f0;
+.openChatList{
+	max-height: calc(100vh - 165px);
+    /* 스크롤 기능 */
+	overflow: hidden;
+	overflow-y: scroll;
+}
+/* 스크롤 숨기기 */
+.openChatList::-webkit-scrollbar {
+  display: none;
 }

@@ -1,8 +1,115 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper SYSTEM "mybatis-3-mapper.dtd" >
 <mapper namespace="com.dicogram.database.MemberMapper">
-	<select id="test" parameterType="com.dicogram.domain.dUsers"
-		resultType="com.dicogram.domain.dUsers">
-		select * from dUsers where id = #{id} and pw = #{pw}
+	<!-- 회원가입 기능 -->
+	<insert id="JoinUser" parameterType="com.dicogram.domain.Users">
+		insert into dUsers(name, userid, pw, nick, email) values (#{name},#{userid},#{pw},#{nick},#{email})
+	</insert>
+	
+	<!-- 로그인 기능 -->
+	<select id="LoginUser" parameterType="com.dicogram.domain.Users" resultType="com.dicogram.domain.Users">
+		select * from dUsers where userid=#{userid} and pw=#{pw}
 	</select>
+
+	<!-- 회원 수정 기능 -->
+	<update id="updateUser" parameterType="com.dicogram.domain.Users">
+		update dUsers set pw=#{pw}, nick=#{nick} where userid=#{userid}
+	</update>
+	
+	<!-- 회원 삭제 기능 -->
+	<delete id="deleteUser" parameterType="String">
+		delete from dUsers where userid=#{id}
+	</delete>
+	
+	<!-- 프로필 경로 수정 기능 -->
+	<update id="upprofile" parameterType="com.dicogram.domain.Users">
+    	update dUsers set profile = #{profile} WHERE userid = #{userid}
+	</update>
+	
+	<!-- 채팅방 생성 후 roomid가져오기 -->
+	<insert id="createChatRoom" useGeneratedKeys="true" keyProperty="roomid" parameterType="com.dicogram.domain.roomsDTO">
+        <!-- 시퀀스 조회 쿼리 -->
+        <selectKey keyProperty="roomid" resultType="long" order="BEFORE">
+            SELECT room_sequence.NEXTVAL FROM DUAL
+        </selectKey>
+        <!-- 실제 INSERT 쿼리 -->
+        insert into rooms (roomid, roomname, userid, setting, pw) values (#{roomid}, #{roomname}, #{userid}, #{setting}, #{pw})
+    </insert>
+    
+    <!-- 메세지 내용 DB에 저장 -->
+    <insert id="MessageToDB" parameterType="com.dicogram.domain.messageDTO">
+		insert into MESSAGES (roomid, userid, mContent) values (#{roomid},#{userid},#{mcontent})
+	</insert>
+    
+	<!-- 채팅 처음 참여자 roomuser DB에 저장하기 -->
+	<insert id="userdataToDB" parameterType="com.dicogram.domain.roomuserDTO">
+        insert into ROOMUSER (roomid, userid, roomname) values (#{roomid}, #{userid}, (SELECT ROOMNAME FROM ROOMS WHERE ROOMID = #{roomid}))
+    </insert>
+    
+    <!-- 채팅방 안에 모든 참여자 불러오기 -->
+	<select id="loadAllUsers" parameterType="String" resultType="com.dicogram.domain.roomuserDTO">
+		select roomname, userid from ROOMUSER where roomid=#{roomid}
+	</select>
+	
+	<!-- 채팅방에 메세지 정보 모두 불러오기(시간 조건 추가) -->
+	<select id="loadAllMessage" parameterType="com.dicogram.domain.roomuserDTO" resultType="com.dicogram.domain.messageDTO">
+		select userid, mcontent, createday from messages where roomid=#{roomid} and createday >
+		(select createday from roomuser where roomid=#{roomid} and userid=#{userid}) order by createday
+	</select>
+	
+	<!-- 한 사용자가 참여했던 모든 채팅방 불러오기 -->
+	<select id="loadMyChatRoom" parameterType="String" resultType="com.dicogram.domain.roomuserDTO">
+		select * from ROOMUSER where userid=#{userid}
+	</select>
+	
+	<!-- 존재하는 모든 오픈채팅방 불러오기 + 내가 들어가지 않은 것 -->
+	<select id="loadOpenChatRoom" parameterType="String" resultType="com.dicogram.domain.loadAllOpenChatRoomsDTO">
+		SELECT roomid, roomname, pw FROM ROOMS WHERE setting = 'Y' 
+		and roomid NOT in (select roomid from roomuser where userid = #{userid})
+	</select>
+
+	<!-- 방 입장 전 기존 참여 여부 체크 -->
+	<select id="checkEnterUser" parameterType="com.dicogram.domain.roomuserDTO" resultType="com.dicogram.domain.roomuserDTO">
+		select * from ROOMUSER where roomid=#{roomid} and userid=#{userid}
+	</select>
+
+	<!-- 채팅방 nick, path 가져오기 -->
+	<!-- <select id="NickPropath" parameterType="long" resultType="com.dicogram.domain.NickPropathDTO">
+       select userid, nick, profile from dUsers where userid in (select userid from roomuser where roomid=#{num})
+    </select> -->
+    
+   <!--  <select id="NickPropath" parameterType="String" resultType="com.dicogram.domain.NickPropathDTO">
+       select userid, nick, profile from dUsers where userid=#{userid}
+    </select> -->
+    
+    <!-- 채팅방 프로필 가져오기 -->
+    <select id="onlyP" parameterType="String" resultType="String">
+       select profile from dUsers where userid=#{userid}
+    </select>
+    
+    <!-- 채팅방 닉네임 가져오기 -->
+    <select id="onlyN" parameterType="String" resultType="String">
+       select nick from dUsers where userid=#{userid}
+    </select>
+    
+    <!-- 채팅방 비밀번호 가져오기 -->
+    <select id="chatPW" parameterType="long" resultType="String">
+       select pw from rooms where roomid=#{roomid}
+    </select>
+    
+    
+    <!-- 게시물 -->
+    <select id="selectAll" resultType="com.dicogram.domain.posts">
+		select * from posts order by postid desc
+   	</select>
+    <!-- 게시물 가져오기 -->
+    <insert id="test1" parameterType="com.dicogram.domain.posts">
+      insert into posts(postid,postname, pcontent, tags,image) values(post_sequence.nextval,#{postname}, #{pcontent}, #{tags},#{image})
+   </insert>
+   <!-- max포스트 넘버 -->
+    <select id="postid"  resultType="int">
+        SELECT MAX(POSTID) FROM POSTS
+   </select>
+    
+    
 </mapper>

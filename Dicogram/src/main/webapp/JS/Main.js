@@ -36,23 +36,53 @@ function handleButtonClick(page) {
                     <textarea id="post-input" placeholder="게시물을 작성하세요" name="pcontent"></textarea>
                     
                     <div class="form-group">
+                       <input type="file" id="fileInput" accept="image/*" name="image">
+                  
+                  <br>
+                        <br>
                         <input name="tags" placeholder="태그을 작성하세요">
-                        <br>
-                        <br>
-                        <input name="room" placeholder="방경로를 작성하세요">
+                        
+                        
                     </div>
                     <table id="cancel_post">
                         <tr>
                             <td><button id="cancel-button" onClick="window.close()">취소</button></td>
-                            <td><button id="post-button" type="submit" >게시</button></td>
+                            <td><button id="post-button" type="submit" onclick="uploadFile()">게시</button></td>
                         </tr>
                     </table>
                 </div>
                 </form>
                 <div id="post-list"></div>
             </div>
+            <script>
+   
+    function uploadFile() {
+        const fileInput = document.getElementById('fileInput');
+        const file = fileInput.files[0];
+
+        if (file) {
+            const formData = new FormData();
+            formData.append('imageFile', file);
+
+            fetch('http://localhost:8089/Dicogram/postUp', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log('업로드 성공:', data);
+            })
+            .catch(error => {
+                console.log('업로드 실패:', error);
+            });
+        } else {
+            console.warn('파일을 선택해주세요.');
+        }
+    }
+   
+     </script>
            
-            <script src="./JS/Menu01_Home_newpost.js"></script>
+            
                 </body>
                 </html>
             `);
