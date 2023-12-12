@@ -23,29 +23,19 @@ public class post extends HttpServlet {
       String content = request.getParameter("pcontent");
       String tag = request.getParameter("tags");
       String img = request.getParameter("image");
-      
-      
-      System.out.println(name);
-      System.out.println(content);
-      System.out.println(tag);
-      System.out.println(img);
-      
-      
+
       SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSession();
       SqlSession sqlSession = sqlSessionFactory.openSession();
       posts newPost = new posts(name,content,tag,img);
+      
       try {
          int existingPost = sqlSession.insert("test1", newPost);
          if (existingPost > 0) {
             sqlSession.commit();
-            //HttpSession session = request.getSession();
-            //session.setAttribute("existingPost", existingPost);
-            //request.setAttribute("existingPost", existingPost);
-            //response.sendRedirect("insert.jsp");
+
          } else {
             sqlSession.rollback();
             sqlSession.close();
-            System.out.println("안넣음!!");
             response.sendRedirect("insert.jsp");
          }
       } catch (Exception e) {

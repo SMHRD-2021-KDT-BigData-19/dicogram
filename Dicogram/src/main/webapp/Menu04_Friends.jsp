@@ -1,15 +1,9 @@
-<%@page import="org.apache.ibatis.session.SqlSession"%>
-<%@page import="com.dicogram.database.SqlSessionManager"%>
-<%@page import="org.apache.ibatis.session.SqlSessionFactory"%>
 <%@page import="com.dicogram.domain.Users"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
 <% 
-	/* SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSession();
-	SqlSession sqlSession = sqlSessionFactory.openSession(); */
-	/* String mypath = sqlSession.selectOne("onlyP", loginUser.getUserid()); */
 	Users loginUser = (Users)session.getAttribute("loginUser");
 %> 
 

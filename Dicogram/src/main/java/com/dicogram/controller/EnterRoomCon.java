@@ -17,7 +17,6 @@ public class EnterRoomCon extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("EnterRoomCon에 들어왔습니다.");
 
 		// 방id 추출
 		long roomid = Long.parseLong(request.getParameter("roomid"));
@@ -26,9 +25,6 @@ public class EnterRoomCon extends HttpServlet {
 		HttpSession session = request.getSession();
 		Users loginUser = (Users)session.getAttribute("loginUser");
 		String userid = loginUser.getUserid();
-		
-		System.out.println("방id: " + roomid);
-		System.out.println("참여자id: " + userid);
 		
 		// DAO 객체 생성
 		UsersDAO dao = new UsersDAO();

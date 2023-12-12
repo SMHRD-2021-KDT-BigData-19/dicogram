@@ -33,8 +33,6 @@ public class postUp extends HttpServlet {
                 System.out.println("파일성공");
                 
                 // 이미지를 저장할 디렉토리 경로
-                // String desktopPath = System.getProperty("user.home") + File.separator +
-                // "Desktop";
                 String desktopPath = "C:\\Users\\smart\\git\\dicogram\\Dicogram\\src\\main\\webapp\\image";
 
                 // 이미지를 저장할 디렉토리 경로

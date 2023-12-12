@@ -1,6 +1,3 @@
-<%@page import="org.apache.ibatis.session.SqlSession"%>
-<%@page import="com.dicogram.database.SqlSessionManager"%>
-<%@page import="org.apache.ibatis.session.SqlSessionFactory"%>
 <%@page import="com.dicogram.domain.loadAllOpenChatRoomsDTO"%>
 <%@page import="com.dicogram.domain.roomsDTO"%>
 <%@page import="java.util.List"%>
@@ -10,33 +7,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%	
-	/* SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSession();
-	SqlSession sqlSession = sqlSessionFactory.openSession(); */
 
 	//세션에 저장되어있는 회원의 정보 가져오기
 	Users loginUser = (Users)session.getAttribute("loginUser");
-	/* String mypath = sqlSession.selectOne("onlyP", loginUser.getUserid()); */
 	
  	// 참여한 채팅방 모두 불러오기
 	UsersDAO daoMyChat = new UsersDAO();
 	List<roomuserDTO> loadMyChatRoom = daoMyChat.loadMyChatRoom(loginUser.getUserid());
-	if(loadMyChatRoom != null) {
-		System.out.println("내 채팅방 불러오기 성공");
-		for(roomuserDTO m: loadMyChatRoom){ 
-			System.out.println("채팅방id: " + m.getRoomid() + ", 방 이름: " + m.getRoomname());
-		}
-	}
 	
 	// 모든 채팅방 불러오기
 	UsersDAO daoOpenChat = new UsersDAO();
 	List<loadAllOpenChatRoomsDTO> loadOpenChatRoom = daoOpenChat.loadOpenChatRoom(loginUser.getUserid());
-	if(loadOpenChatRoom != null) {
-		System.out.println("오픈 채팅방 불러오기 성공");
-		for(loadAllOpenChatRoomsDTO m: loadOpenChatRoom){ 
-			System.out.println("채팅방id: " + m.getRoomid() + ", 방 이름: " + m.getRoomname());
 
-		}
-	}
 %>
 <html>
 <head>

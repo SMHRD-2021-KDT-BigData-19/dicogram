@@ -33,57 +33,16 @@
 	UsersDAO daoUsers = new UsersDAO();
 	List<roomuserDTO> loadallusers = daoUsers.loadAllUsers(roomid);
 
-	if(loadallusers != null) {
-		System.out.println("모든 참여자 불러오기 성공");
-		for(roomuserDTO m: loadallusers){ 
-			System.out.println("사용자id: " + m.getUserid() + ", 방 이름: " + m.getRoomname());
-		}
-	}
 	String roomname = loadallusers.get(0).getRoomname();
-	System.out.println(roomname);
 	
 	// 메세지 DB에서 불러오기(방 id, 사용자 id)
 	UsersDAO daoMessages = new UsersDAO();
 	roomuserDTO loadAllMessageMem = new roomuserDTO(Long.parseLong(roomid), loginUser.getUserid());
 	List<messageDTO> loadAllMessage = daoMessages.loadAllMessage(loadAllMessageMem);
-	
-	if(loadAllMessage != null) {
-		System.out.println("모든 메세지 내용 불러오기 성공");
-		for(messageDTO m: loadAllMessage){ 
-			System.out.println("사용자id: " + m.getUserid() + ", 메세지 내용: " + m.getMcontent() + ", 시간: " + m.getCreateday());
-		}
-	}
-	
-/*  	// nick, propath
-	UsersDAO mynp = new UsersDAO();
-	// List<NickPropathDTO> NPlist = np.NickPropathDAO(Long.parseLong(roomid));
-	NickPropathDTO myNP = mynp.NickPropathDAO(loginUser.getUserid());
-	String mypath =  myNP.getProfile();
-	System.out.println("내 프로필: " + mypath); */
-	
+
 	String mynick = sqlSession.selectOne("onlyN", loginUser.getUserid());
-	System.out.println("내 닉네임: " + mynick);
 	String mypath = loginUser.getPropath();
-	System.out.println("내 프로필: " + mypath);
-	
-	
-	
-	
-	
-/* 	UsersDAO unp = new UsersDAO();
-	UsersDAO messagenp = new UsersDAO(); */
-	
-/* 	Map<String, String> nickMap = new HashMap<>();
-	Map<String, String> propathMap = new HashMap<>();
-	
-    for (NickPropathDTO un : NPlist) {
-    	nickMap.put(un.getUserid(), un.getNick());
-    	propathMap.put(un.getUserid(), un.getPropath());
-    	System.out.println("userid: " + un.getUserid());
-        System.out.println("nick: " + un.getNick());
-        System.out.println("propath   : " + un.getPropath());
-    }
-    String myPath = propathMap.get(loginUser.getUserid()); */
+
 %>
 
 <html>
@@ -165,7 +124,6 @@
 				
             	String uNick = sqlSession.selectOne("onlyN", m.getUserid());
             	String uPath = sqlSession.selectOne("onlyP", m.getUserid());
-/*             	System.out.println("----채팅방 메세지 불러오기 nick----" + uNick); */
 				
 				if(m.getUserid().equals(loginUser.getUserid())) {%>
 					myMessage('<%=m.getMcontent()%>','<%=m.getCreateday().substring(11, 16)%>');
@@ -178,8 +136,6 @@
    				
    				String uNick = sqlSession.selectOne("onlyN", m.getUserid());
    				String uPath = sqlSession.selectOne("onlyP", m.getUserid());
-/*    				System.out.println("----채팅방 참여자 불러오기 nick----" + uNick);
-   				System.out.println("----채팅방 참여자 불러오기 path----" + uPath); */
    				
 				if(!m.getUserid().equals(loginUser.getUserid())){%>
 					userList('<%=uNick%>','<%=uPath%>');

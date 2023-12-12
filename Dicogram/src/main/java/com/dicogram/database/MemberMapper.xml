@@ -72,15 +72,6 @@
 	<select id="checkEnterUser" parameterType="com.dicogram.domain.roomuserDTO" resultType="com.dicogram.domain.roomuserDTO">
 		select * from ROOMUSER where roomid=#{roomid} and userid=#{userid}
 	</select>
-
-	<!-- 채팅방 nick, path 가져오기 -->
-	<!-- <select id="NickPropath" parameterType="long" resultType="com.dicogram.domain.NickPropathDTO">
-       select userid, nick, profile from dUsers where userid in (select userid from roomuser where roomid=#{num})
-    </select> -->
-    
-   <!--  <select id="NickPropath" parameterType="String" resultType="com.dicogram.domain.NickPropathDTO">
-       select userid, nick, profile from dUsers where userid=#{userid}
-    </select> -->
     
     <!-- 채팅방 프로필 가져오기 -->
     <select id="onlyP" parameterType="String" resultType="String">

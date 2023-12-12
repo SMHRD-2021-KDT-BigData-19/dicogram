@@ -204,18 +204,5 @@ public class UsersDAO {
 		}
 		return result;
 	}
-
-	
-	public NickPropathDTO NickPropathDAO (String userid){
-		NickPropathDTO result = null;
-		try {
-			result = sqlSession.selectOne("NickPropath", userid);
-		} catch(Exception e){
-			e.printStackTrace();
-		} finally {
-			
-		}
-		return result;
-	}
 	
 }

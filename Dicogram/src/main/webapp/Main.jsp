@@ -19,17 +19,9 @@
     String mynick = sqlSession.selectOne("onlyN", loginUser.getUserid());
     String mypath = sqlSession.selectOne("onlyP", loginUser.getUserid());
     
-    System.out.println(loginUser.getUserid());
-    System.out.println(loginUser.getNick());
-    System.out.println(loginUser.getPropath());
-    
     loginUser.setPropath(mypath); 
 	session.setAttribute("loginUser", loginUser);
-	
-    System.out.println(loginUser.getUserid());
-    System.out.println(loginUser.getNick());
-    System.out.println(loginUser.getPropath());
-    
+
 %>
 <!DOCTYPE html>
 <html>

@@ -9,22 +9,17 @@ import javax.servlet.http.HttpServletResponse;
 import com.dicogram.domain.UsersDAO;
 import com.dicogram.domain.messageDTO;
 
-
-
 public class MessageToDBCon extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("MessageToDBCon에 들어왔습니다.");
+		
+		// 메세지 내용을 DB에 저장하기 위해 SQL실행
 		request.setCharacterEncoding("UTF-8");
 		
 		String message = request.getParameter("message");
 		String userid = request.getParameter("userid");
 		long roomid = Long.parseLong(request.getParameter("roomid"));
-		
-		System.out.println(message);
-		System.out.println(userid);
-		System.out.println(roomid);
 
 		messageDTO MessageToDBMem = new messageDTO(roomid, userid, message);
 		
