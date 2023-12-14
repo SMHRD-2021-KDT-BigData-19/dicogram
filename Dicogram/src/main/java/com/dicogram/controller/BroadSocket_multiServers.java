@@ -38,9 +38,6 @@ public class BroadSocket_multiServers{
         
         // test - 방에 존재하는 유저들
         System.out.println(chatroomId + ": " + chatroomSessions);
-        
-//        // 모든 클라이언트에게 신호를 보낸다.
-//        sendSignalToAllClients(chatroomSessions, "New client entered");
 	}
 	
 	// WebSocket으로 메시지가 오면 요청되는 함수

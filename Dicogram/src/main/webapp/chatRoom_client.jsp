@@ -117,9 +117,8 @@
         
         // WebSocket 서버와 연결이 되면 호출되는 함수
         webSocket.onopen = function(event) {
-            console.log("하 테스트 그만!!!");
             
-            // 기존 채팅 내용 불러오기
+            // 기존 채팅 내용 DB에서 불러오기
             <% for(messageDTO m: loadAllMessage){
 				
             	String uNick = sqlSession.selectOne("onlyN", m.getUserid());
@@ -131,7 +130,7 @@
 					receivedMessage('<%=uNick%>','<%=m.getMcontent()%>','<%=m.getCreateday().substring(11, 16)%>','<%=uPath%>');
    			<%}} %>
    			
-   			// 채팅방 참여자 목록 불러오기
+   			// 채팅방 참여자 목록 DB에서 불러오기
    			<% for(roomuserDTO m: loadallusers){
    				
    				String uNick = sqlSession.selectOne("onlyN", m.getUserid());

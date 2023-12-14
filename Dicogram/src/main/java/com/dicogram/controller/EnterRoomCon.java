@@ -17,7 +17,11 @@ public class EnterRoomCon extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
+		// 채팅방 입장 전 기존 참여자인지 새로운 참여자인지 체크
+		// 기존 참여자면 바로 채팅방 입장 > chatRoom_client.jsp
+		// 새로운 참여자면 채팅방 비번 확인 후 > userdataToDBCon servlet
+		
 		// 방id 추출
 		long roomid = Long.parseLong(request.getParameter("roomid"));
 		
@@ -35,12 +39,14 @@ public class EnterRoomCon extends HttpServlet {
 		 
 		String confirmScript;
 		String pw;
+		// 새로운 참여자면
 		if(checkEnterUser == null) {
 			System.out.println("새로운 참여자입니다!!!!");
 			
-			// 채팅방 비번 가져오기
+			// 채팅방 비밀번호 가져오기
 			pw = dao.chatPWDAO(roomid);
 			
+			// 채팅방 비번이 없으면 보이는 화면
 			if(pw == null) {
 				confirmScript = "<script>"
                     + "var confirmResult = confirm('채팅방에 참여하시겠습니까?');"
@@ -52,7 +58,7 @@ public class EnterRoomCon extends HttpServlet {
                     + "}"
                     + "</script>";
 			}
-			else {
+			else { // 채팅방 비번이 있으면 alert창 보임
 				confirmScript = "<script>"
                     + "var confirmResult = confirm('채팅방에 참여하시겠습니까?');"
                     + "if (confirmResult) {"
@@ -66,7 +72,7 @@ public class EnterRoomCon extends HttpServlet {
                     + "}"
                     + "</script>";
 			}
-
+			
             response.setContentType("text/html;charset=utf-8");
             PrintWriter out = response.getWriter();
             out.println(confirmScript);

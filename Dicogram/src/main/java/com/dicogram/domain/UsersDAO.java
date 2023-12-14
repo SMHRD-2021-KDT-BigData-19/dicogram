@@ -179,7 +179,7 @@ public class UsersDAO {
 		return result;
 	}
 	
-	// 존재하는 모든 오픈채팅방 불러오기 + 내가 들어가지 않은 것
+	// 존재하는 모든 오픈채팅방 불러오기 + 내가 들어가지 않은 것 + 공개채팅방
 	public List<loadAllOpenChatRoomsDTO> loadOpenChatRoom(String userid) {
 		List<loadAllOpenChatRoomsDTO> result = null;
 		try {

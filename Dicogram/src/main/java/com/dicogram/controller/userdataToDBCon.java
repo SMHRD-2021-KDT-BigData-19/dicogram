@@ -21,7 +21,7 @@ public class userdataToDBCon extends HttpServlet {
 		UsersDAO dao = new UsersDAO();
 		roomuserDTO userdataToDBMem = new roomuserDTO(roomid,userid);
 		
-		// db에 데이터 저장
+		// db에 채팅방 처음 들어온 사용자 저장
 		if(dao.userdataToDB(userdataToDBMem) > 0) {
 			System.out.println("db에 참여자 저장 성공^^");
 			response.sendRedirect("chatRoom_client.jsp?roomid=" + request.getParameter("roomid"));

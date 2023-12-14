@@ -63,7 +63,7 @@
         </div>
     </div>
 	
-	<!-- 채팅 리스트 -->
+	<!-- 내가 참여한 채팅 리스트 -->
 	<div class="myChatbox">
     	<div class="chatTitle"><h1>내 채팅방 목록</h1></div>
 	    <div class="myChatList">
@@ -79,6 +79,7 @@
 		</div>
 	</div>
 	
+	<!-- 오픈 채팅 리스트 -->
 	<div class="openChatbox">
 		<div class="chatTitle"><h1>오픈 채팅방 목록</h1></div>
 		<input type="text" id="search-input" placeholder="채팅방 검색...">
@@ -97,7 +98,7 @@
 	<!-- 채팅방 생성 -->
 	<button class="content-button">+ Chat</button>
 	
-	<!-- 모달창 -->
+	<!-- 채팅방 생성 모달창 -->
     <div id="modal_background" class="hidden_modal">
         <div class="container" id="modal_container">
             <h1>채팅방 만들기</h1>
