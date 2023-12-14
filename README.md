@@ -197,14 +197,11 @@ public Page<Post> findAllByTagName(String tagName, Pageable pageable) {
 <div markdown="1">
 
 - String fileName = getSubmittedFileName(imagePart)
-데이터 베이스에 fileName으로 저장하였으나 
-불러올때 어려움을 겪어
-- MemberMapper.xml에 아래 sql문을 추가해서
-    <select id="postid"  resultType="int">
-        SELECT MAX(POSTID) FROM POSTS
-   </select>
--게시물번호로 프로젝트 내부에 저장하여 게시물번호에 경로를 붙여서 불러옴
-<img alt="" src="./image/post/<%=m.getPid()%>.png">
+   데이터 베이스에 fileName으로 저장하였으나 
+   불러올때 어려움을 겪어
+- MemberMapper.xml에 아래 sql문을 추가해서 SELECT MAX(POSTID) FROM POSTS
+- MAX게시물번호로 프로젝트 내부에 저장하여 게시물번호에 경로를 붙여서 불러옴
+  //<img alt="" src="./image/post/<%=m.getPid()%>.png">//
 
 
 </div>
