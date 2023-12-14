@@ -193,11 +193,19 @@ public Page<Post> findAllByTagName(String tagName, Pageable pageable) {
 
 ## 6. 그 외 트러블 슈팅
 <details>
-<summary>npm run dev 실행 오류</summary>
+<summary>DataBase 이미지 불러오기 오</summary>
 <div markdown="1">
 
-- Webpack-dev-server 버전을 3.0.0으로 다운그레이드로 해결
-- `$ npm install —save-dev webpack-dev-server@3.0.0`
+- String fileName = getSubmittedFileName(imagePart)
+데이터 베이스에 fileName으로 저장하였으나 
+불러올때 어려움을 겪어
+- MemberMapper.xml에 아래 sql문을 추가해서
+    <select id="postid"  resultType="int">
+        SELECT MAX(POSTID) FROM POSTS
+   </select>
+-게시물번호로 프로젝트 내부에 저장하여 게시물번호에 경로를 붙여서 불러옴
+<img alt="" src="./image/post/<%=m.getPid()%>.png">
+
 
 </div>
 </details>
@@ -213,10 +221,11 @@ public Page<Post> findAllByTagName(String tagName, Pageable pageable) {
 </details>
 
 <details>
-<summary>ElementUI input 박스에서 `v-on:keyup.enter="메소드명"`이 정상 작동 안하는 문제</summary>
+<summary>팝업창 CSS적용 오류</summary>
 <div markdown="1">
   
-  - `v-on:keyup.enter.native=""` 와 같이 .native 추가로 해결
+  - Main.jsp에 게시물추가창을 JS로 팝업창을 열어서 버튼을 CLASS로 합쳐서 수정하려고 했으나 적용이 되지않아 ID를 적용시켜 수정함
+  - 
   
 </div>
 </details>
