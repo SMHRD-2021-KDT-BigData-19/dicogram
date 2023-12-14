@@ -201,7 +201,7 @@ public Page<Post> findAllByTagName(String tagName, Pageable pageable) {
    불러올때 어려움을 겪어
 - MemberMapper.xml에 아래 sql문을 추가해서 SELECT MAX(POSTID) FROM POSTS
 - MAX게시물번호로 프로젝트 내부에 저장하여 게시물번호에 경로를 붙여서 불러옴
-  //<img alt="" src="./image/post/<%=m.getPid()%>.png">//
+  '''<img alt="" src="./image/post/<%=m.getPid()%>.png">'''
 
 
 </div>
