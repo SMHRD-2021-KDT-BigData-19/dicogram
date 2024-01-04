@@ -193,55 +193,135 @@ public Page<Post> findAllByTagName(String tagName, Pageable pageable) {
 
 ### 5.2. 서버와 클라이언트 구현
 - 채팅방을 구현하기 위해 서버와 클라이언트의 개념을 익히고 이클립스 console창으로 서로 다른 컴퓨터 간에 채팅이 가능하게 했습니다. 하지만 이를 웹 어플리케이션으로 채팅방을 구현하는데 알맞지 않아 웹 소켓을 사용해 이클립스 Servlet에서 사용하는 코드로 수정했습니다.
-  <details>
+
+<details>
 <summary><b>기존 코드</b></summary>
 <div markdown="1">
-
-~~~java
-/**
- * 게시물 Top10 (기준: 댓글 수 + 좋아요 수)
- * @return 인기순 상위 10개 게시물
- */
-public Page<PostResponseDto> listTopTen() {
-
-    PageRequest pageRequest = PageRequest.of(0, 10, Sort.Direction.DESC, "rankPoint", "likeCnt");
-    return postRepository.findAll(pageRequest).map(PostResponseDto::new);
-}
-
-/**
- * 게시물 필터 (Tag Name)
- * @param tagName 게시물 박스에서 클릭한 태그 이름
- * @param pageable 페이징 처리를 위한 객체
- * @return 해당 태그가 포함된 게시물 목록
- */
-public Page<PostResponseDto> listFilteredByTagName(String tagName, Pageable pageable) {
-
-    return postRepository.findAllByTagName(tagName, pageable).map(PostResponseDto::new);
-}
-
-// ... 게시물 필터 (Member) 생략 
-
-/**
- * 게시물 필터 (Date)
- * @param createdDate 게시물 박스에서 클릭한 날짜
- * @return 해당 날짜에 등록된 게시물 목록
- */
-public List<PostResponseDto> listFilteredByDate(String createdDate) {
-
-    // 등록일 00시부터 24시까지
-    LocalDateTime start = LocalDateTime.of(LocalDate.parse(createdDate), LocalTime.MIN);
-    LocalDateTime end = LocalDateTime.of(LocalDate.parse(createdDate), LocalTime.MAX);
-
-    return postRepository
-                    .findAllByCreatedAtBetween(start, end)
-                    .stream()
-                    .map(PostResponseDto::new)
-                    .collect(Collectors.toList());
-    }
+  
+  ~~~java
+  package Server;
+  
+  import java.io.*;
+  import java.net.*;
+  import java.util.ArrayList;
+  import java.util.Collections;
+  import java.util.List;
+  
+  public class MultiServer {
+  	
+  	public static void main(String[] args) {
+  		MultiServer multiServer = new MultiServer();
+  		multiServer.start();
+  	}
+  	
+  	public void start() {
+  		ServerSocket serverSocket = null;
+  		Socket socket = null;
+  		try {
+  			serverSocket = new ServerSocket(8000);
+  			while (true) {
+  				System.out.println("[클라이언트 연결대기중]");
+  				socket = serverSocket.accept();
+  				
+  				// client가 접속할때마다 새로운 스레드 생성
+  				ReceiveThread receiveThread = new ReceiveThread(socket);	
+  				receiveThread.start();
+  			}
+  		} catch (IOException e) {
+  			e.printStackTrace();
+  		} finally {
+  			if (serverSocket!=null) {
+  				try {
+  					serverSocket.close();
+  					System.out.println("[서버종료]");
+  				} catch (IOException e) {
+  					e.printStackTrace();
+  					System.out.println("[서버소켓통신에러]");
+  				}
+  			}
+  		}
+  	}
+  }
+  
+  class ReceiveThread extends Thread {
+  	
+  //	static List<BufferedWriter> list = Collections.synchronizedList(new ArrayList<BufferedWriter>());
+  	static List<PrintWriter> list = Collections.synchronizedList(new ArrayList<PrintWriter>());
+  	
+  	Socket socket = null;
+  	BufferedReader in = null;
+  //	BufferedWriter out = null;
+  	PrintWriter out = null;
+  			
+  	public ReceiveThread (Socket socket) {
+  		this.socket = socket;
+  		try {
+  			out = new PrintWriter(socket.getOutputStream());
+  //			out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+  			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+  			list.add(out);
+  		} catch (IOException e) {
+  			e.printStackTrace();
+  		}
+  	}
+  		
+  	@Override
+  	public void run() {
+  
+  		String name = "";
+  		try {
+  			// 최초1회는 client이름을 수신
+  			name = in.readLine();
+  			System.out.println("[" + name + " 새연결생성]");	
+  			sendAll("[" + name + "]님이 들어오셨습니다.");
+  			
+  			while (in != null) {
+  				String inputMsg = in.readLine();
+  				if("quit".equals(inputMsg)) break;
+  				sendAll(name + ">>" + inputMsg);
+  			}
+  		} catch (IOException e) {
+  			System.out.println("[" + name + " 접속끊김]");
+  		} finally {
+  			sendAll("[" + name + "]님이 나가셨습니다");
+  			list.remove(out);
+  			try {
+  				socket.close();
+  			} catch (IOException e) {
+  				e.printStackTrace();
+  			}
+  		}
+  		System.out.println("[" + name + " 연결종료]");
+  	}
+  	
+  	private void sendAll (String s) {
+  		for (PrintWriter out: list) {
+  			out.println(s);
+  			out.flush();
+  		}
+  	}
+  }
 ~~~
-
 </div>
 </details>
+<details>
+<summary><b>개선된 코드</b></summary>
+<div markdown="1">
+</div>
+</details>
+  - 참고
+    - [https://nowonbun.tistory.com/285](https://nowonbun.tistory.com/285)
+<br>
+
+- 기존 서버 파일은 단일 서버로 클라이언트를 연결했었으나, 채팅방을 다수 생성하기 위해 HashMap을 도입하여 하나의 서버에서 여러 채팅방을 효과적으로 관리할 수 있도록 서버 코드를 수정하였습니다.
+<br>
+- 채팅방을 새로 생성하고 DB에 추가할 때, 자동으로 생성된 채팅방 코드를 서버에 전달하기 위해 path parameter 형식으로 서버 URL주소와 함께 채팅방 코드를 전송하였습니다.
+<br>
+- 실시간 채팅 중에 메시지를 받을 때, 메시지를 보낸 상대방의 프로필과 닉네임 정보를 채팅방에 표시하기 위해 메시지를 보낼 때 다음과 같은 형식의 문자열 데이터를 사용하고, 이후에 match 함수를 활용하여 데이터를 추출하도록 수정했습니다.
+<br>
+- 메시지를 받거나 보낼 때, 화면에 채팅방 형식으로 구현하기 위해 <ul> 태그 아래에 <li> 태그를 추가로 생성하여 메시지 내용과 프로필 사진, 시간, 닉네임을 확인할 수 있도록 구현했습니다.
+<br>
+- DB에 메시지 내용과 사용자id, 채팅방코드을 저장하기 위해 JSP 파일에서 Servlet으로 데이터를 fetch하여 전송하였습니다.
 
 ## 6. 그 외 트러블 슈팅
 <details>
