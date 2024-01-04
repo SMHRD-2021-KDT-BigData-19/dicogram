@@ -191,6 +191,58 @@ public Page<Post> findAllByTagName(String tagName, Pageable pageable) {
 
 </br>
 
+### 5.2. 서버와 클라이언트 구현
+- 채팅방을 구현하기 위해 서버와 클라이언트의 개념을 익히고 이클립스 console창으로 서로 다른 컴퓨터 간에 채팅이 가능하게 했습니다. 하지만 이를 웹 어플리케이션으로 채팅방을 구현하는데 알맞지 않아 웹 소켓을 사용해 이클립스 Servlet에서 사용하는 코드로 수정했습니다.
+  <details>
+<summary><b>기존 코드</b></summary>
+<div markdown="1">
+
+~~~java
+/**
+ * 게시물 Top10 (기준: 댓글 수 + 좋아요 수)
+ * @return 인기순 상위 10개 게시물
+ */
+public Page<PostResponseDto> listTopTen() {
+
+    PageRequest pageRequest = PageRequest.of(0, 10, Sort.Direction.DESC, "rankPoint", "likeCnt");
+    return postRepository.findAll(pageRequest).map(PostResponseDto::new);
+}
+
+/**
+ * 게시물 필터 (Tag Name)
+ * @param tagName 게시물 박스에서 클릭한 태그 이름
+ * @param pageable 페이징 처리를 위한 객체
+ * @return 해당 태그가 포함된 게시물 목록
+ */
+public Page<PostResponseDto> listFilteredByTagName(String tagName, Pageable pageable) {
+
+    return postRepository.findAllByTagName(tagName, pageable).map(PostResponseDto::new);
+}
+
+// ... 게시물 필터 (Member) 생략 
+
+/**
+ * 게시물 필터 (Date)
+ * @param createdDate 게시물 박스에서 클릭한 날짜
+ * @return 해당 날짜에 등록된 게시물 목록
+ */
+public List<PostResponseDto> listFilteredByDate(String createdDate) {
+
+    // 등록일 00시부터 24시까지
+    LocalDateTime start = LocalDateTime.of(LocalDate.parse(createdDate), LocalTime.MIN);
+    LocalDateTime end = LocalDateTime.of(LocalDate.parse(createdDate), LocalTime.MAX);
+
+    return postRepository
+                    .findAllByCreatedAtBetween(start, end)
+                    .stream()
+                    .map(PostResponseDto::new)
+                    .collect(Collectors.toList());
+    }
+~~~
+
+</div>
+</details>
+
 ## 6. 그 외 트러블 슈팅
 <details>
 <summary>DataBase 이미지 불러오기 오류</summary>
